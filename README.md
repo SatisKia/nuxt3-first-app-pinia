@@ -1,0 +1,1 @@
+# nuxt3-first-app-pinia
