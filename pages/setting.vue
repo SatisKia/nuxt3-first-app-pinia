@@ -1,0 +1,3 @@
+<template>
+  <my-setting />
+</template>
