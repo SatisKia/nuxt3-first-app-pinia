@@ -8,14 +8,14 @@ export default () => {
     initialize()
     const nuxtApp = useNuxtApp()
     for (let i = 0; ; i++) {
-      const id = nuxtApp.$myCookie.getValue('id' + i, '')
+      const id = nuxtApp.$myStorage.getValue('id' + i, '')
       if (id.length === 0) {
         break
       }
-      const done = nuxtApp.$myCookie.getBool('done' + i, false)
-      const date = new Date(nuxtApp.$myCookie.getNumber('date' + i, 0))
-      const text = nuxtApp.$myCookie.getValue('text' + i, '')
-      const color = nuxtApp.$myCookie.getValue('color' + i, '')
+      const done = nuxtApp.$myStorage.getBool('done' + i, false)
+      const date = new Date(nuxtApp.$myStorage.getNumber('date' + i, 0))
+      const text = nuxtApp.$myStorage.getValue('text' + i, '')
+      const color = nuxtApp.$myStorage.getValue('color' + i, '')
       push({ todo: {
         id: id,
         done: done,
@@ -24,8 +24,8 @@ export default () => {
         color: color
       } })
     }
-    setDateType({ dateType: nuxtApp.$myCookie.getNumber('dateType', 1) })
-    setDispYear({ dispYear: nuxtApp.$myCookie.getBool('dispYear', true) })
+    setDateType({ dateType: nuxtApp.$myStorage.getNumber('dateType', 1) })
+    setDispYear({ dispYear: nuxtApp.$myStorage.getBool('dispYear', true) })
   }
 
   const saveData = () => {
@@ -38,13 +38,13 @@ export default () => {
     let i = 0
     for (; i < todoList.value.length; i++) {
       const todo = todoList.value[i]
-      nuxtApp.$myCookie.setValue('id' + i, todo.id)
-      nuxtApp.$myCookie.setBool('done' + i, todo.done)
-      nuxtApp.$myCookie.setNumber('date' + i, todo.date.getTime())
-      nuxtApp.$myCookie.setValue('text' + i, todo.text)
-      nuxtApp.$myCookie.setValue('color' + i, todo.color)
+      nuxtApp.$myStorage.setValue('id' + i, todo.id)
+      nuxtApp.$myStorage.setBool('done' + i, todo.done)
+      nuxtApp.$myStorage.setNumber('date' + i, todo.date.getTime())
+      nuxtApp.$myStorage.setValue('text' + i, todo.text)
+      nuxtApp.$myStorage.setValue('color' + i, todo.color)
     }
-    nuxtApp.$myCookie.setValue('id' + i, '')
+    nuxtApp.$myStorage.setValue('id' + i, '')
   }
 
   return {
